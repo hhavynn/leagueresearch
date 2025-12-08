@@ -1,0 +1,42 @@
+[
+  {
+    "gameid": "LOLTMNT01_189290",
+    "teamid": "oe:team:0916b3c324c8577b0c6344f3e067f62",
+    "gank_focus": "bot",
+    "result": 1,
+    "obj_conversion": 1,
+    "lii_diff": -806.5
+  },
+  {
+    "gameid": "LOLTMNT01_189290",
+    "teamid": "oe:team:d8ca3fc1f0827ec76369af7b70d43e3",
+    "gank_focus": "top",
+    "result": 0,
+    "obj_conversion": 0,
+    "lii_diff": 806.5
+  },
+  {
+    "gameid": "LOLTMNT01_193083",
+    "teamid": "oe:team:45c362a0cfc4b81f597b5ab89250df5",
+    "gank_focus": "top",
+    "result": 0,
+    "obj_conversion": 1,
+    "lii_diff": 4.0
+  },
+  {
+    "gameid": "LOLTMNT01_193083",
+    "teamid": "oe:team:67169969ecc058b307edfa9c6b7a3c0",
+    "gank_focus": "bot",
+    "result": 1,
+    "obj_conversion": 1,
+    "lii_diff": -4.0
+  },
+  {
+    "gameid": "LOLTMNT01_195023",
+    "teamid": "oe:team:03e2d2e3168da8b4e8f381342cb59cb",
+    "gank_focus": "top",
+    "result": 1,
+    "obj_conversion": 1,
+    "lii_diff": 538.0
+  }
+]

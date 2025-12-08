@@ -1,0 +1,18 @@
+{
+  "test1": {
+    "test_name": "Objective Conversion Rate (Bot vs Top)",
+    "observed_stat": 0.04842342342342343,
+    "p_value": 0.0009,
+    "bot_mean": 0.9245495495495496,
+    "top_mean": 0.8761261261261262,
+    "interpretation": "Significant"
+  },
+  "test2": {
+    "test_name": "Win Rate (Bot vs Top)",
+    "observed_stat": 0.027027027027026973,
+    "p_value": 0.2755,
+    "bot_winrate": 0.5135135135135135,
+    "top_winrate": 0.4864864864864865,
+    "interpretation": "Not significant"
+  }
+}
