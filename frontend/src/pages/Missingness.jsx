@@ -44,14 +44,13 @@ export default function Missingness() {
           </p>
           <p>
             <strong>Is it NMAR?</strong><br />
-            We believe the missingness in `ban` columns (like `ban1`) could be <strong>NMAR (Not Missing At Random)</strong>.
-            In professional play, a missing ban often indicates a team intentionally chose not to ban a champion (a "null ban"),
-            or ran out of time. If they chose not to ban because "no champion was worth banning", the missingness depends on the
-            value of the unobserved variable (the "worthiness" of a ban).
+            We believe the missingness in `ban` columns is <strong>NMAR (Not Missing At Random)</strong>.
+            This is because the decision to skip a ban often depends on the unobserved value of "whether there is a champion worth banning"
+            (or if the team intentionally strategized to leave a ban slot open). Since the reason for missingness is tied to the value itself
+            (or the lack of a value worth recording), it is NMAR.
           </p>
           <p style={{ marginTop: "1rem" }}>
-            However, it could also be <strong>MAR</strong> if it depends on observable factors like game version (patches with fewer OP champs)
-            or game length (remakes?). To test this, we check dependencies on other columns.
+            However, we also investigate if it is MAR (Missing At Random) by checking dependencies on other observed columns.
           </p>
         </div>
       </section>
@@ -84,7 +83,8 @@ export default function Missingness() {
       <section style={{ marginBottom: "3rem" }}>
         <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Test 2: Check for Independence (MCAR)</h3>
         <p style={{ marginBottom: "1rem" }}>
-          We also checked if missingness depends on <strong>{results.test2.dependent_col}</strong> (Blue vs Red side). We expect this to be independent.
+          We also checked if missingness depends on <strong>{results.test2.dependent_col}</strong> (Total Monster Kills).
+          We expect this to be independent, as purely in-game PvE stats should not affect pre-game ban behavior.
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "1.5rem" }}>
@@ -103,8 +103,9 @@ export default function Missingness() {
           </div>
         )}
         <div style={{ marginTop: "1rem", padding: "1rem", backgroundColor: "#e8f5e9", borderRadius: "8px", border: "1px solid #4CAF50" }}>
-          <strong>Conclusion:</strong> Since the p-value is large (&gt; 0.05), we <strong>fail to reject the null hypothesis</strong>.
-          The missingness of bans does NOT appear to depend on the side selection, supporting that it is not universally dependent on all variables.
+          <strong>Conclusion:</strong> {results.test2.p_value > 0.05
+            ? "Since the p-value is large (> 0.05), we fail to reject the null hypothesis. The missingness of bans does NOT appear to depend on monster kills, supporting the idea that it is not universally dependent on all gaming metrics."
+            : "The p-value is small (< 0.05), suggesting a potential dependency even on this variable."}
         </div>
       </section>
     </div>

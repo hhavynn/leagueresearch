@@ -90,12 +90,18 @@ def analyze_missingness():
     print(f"Testing dependency on: {dep_col_1}")
     obs1, p_val1, null_dist1 = permutation_test_missingness(df, target_col, dep_col_1)
     
-    # Test 2: Dependency on 'side' (Likely Independent)
-    # Convert side to numeric for test (Blue=0, Red=1)
-    df['side_numeric'] = (df['side'] == 'Red').astype(int)
-    dep_col_2 = 'side'
+    # Test 2: Dependency on 'monsterkills' (Likely Independent - pre-game ban vs in-game pve)
+    # Use max monsterkills per game (team level proxy)
+    # Actually just use the raw column from the row.
+    # But wait, df is only trade games? 
+    # Let's ensure monsterkills is numeric.
+    dep_col_2 = 'monsterkills'
     print(f"Testing dependency on: {dep_col_2}")
-    obs2, p_val2, null_dist2 = permutation_test_missingness(df, target_col, 'side_numeric')
+    
+    # Fill NA monsterkills with 0 just in case
+    df['monsterkills'] = df['monsterkills'].fillna(0)
+    
+    obs2, p_val2, null_dist2 = permutation_test_missingness(df, target_col, dep_col_2)
     
     # Generate Plots
     def create_plot(null_dist, obs, p_val, col_name):

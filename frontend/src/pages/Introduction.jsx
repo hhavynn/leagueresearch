@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 export default function Introduction() {
   return (
     <div>
@@ -28,7 +30,7 @@ export default function Introduction() {
 
       <section style={{ marginBottom: "2rem" }}>
         <h3 style={{ color: "#667eea", marginBottom: "0.75rem" }}>Why This Matters</h3>
-        <ul style={{ lineHeight: "1.75", color: "#4b5563" }}>
+        <ul style={{ lineHeight: "1.75", color: "#4b5563", marginLeft: "1.5rem" }}>
           <li><strong>For Teams & Analysts:</strong> Helps quantify the value of bot-centric vs top-centric early-game plans</li>
           <li><strong>For Fans:</strong> Answers the classic debate: "Was that cross-map trade worth?"</li>
           <li><strong>For Organizations:</strong> Informs jungle pathing priorities and resource allocation strategies</li>
@@ -39,42 +41,22 @@ export default function Introduction() {
         <h3 style={{ color: "#667eea", marginBottom: "0.75rem" }}>Dataset</h3>
         <p style={{ lineHeight: "1.75", color: "#4b5563" }}>
           We analyzed <strong>888 cross-map trade games</strong> (1,776 team-game observations) from Oracle's Elixir's
-          professional League of Legends dataset, spanning multiple regions and years. Each game was identified by detecting
-          early jungler involvement in opposing lanes during the first 10 minutes.
+          professional League of Legends dataset. The dataset was filtered to professional matches containing exactly one symmetric cross-map trade event.
         </p>
       </section>
 
       <section style={{ marginBottom: "2rem" }}>
         <h3 style={{ color: "#667eea", marginBottom: "0.75rem" }}>Relevant Columns</h3>
         <p style={{ lineHeight: "1.75", color: "#4b5563", marginBottom: "1rem" }}>
-          The key features used in our analysis include:
+          The analysis focuses on the following features:
         </p>
-        <div style={{ backgroundColor: "#f9fafb", borderRadius: "8px", overflow: "hidden" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
-            <tbody>
-              <tr style={{ borderBottom: "1px solid #e5e7eb" }}>
-                <td style={{ padding: "0.75rem", fontWeight: "bold", width: "150px" }}>result</td>
-                <td style={{ padding: "0.75rem", color: "#4b5563" }}>Binary indicator of game outcome (1 = Win, 0 = Loss).</td>
-              </tr>
-              <tr style={{ borderBottom: "1px solid #e5e7eb" }}>
-                <td style={{ padding: "0.75rem", fontWeight: "bold" }}>gank_focus</td>
-                <td style={{ padding: "0.75rem", color: "#4b5563" }}>The primary lane (Bot or Top) targeted by the jungler in the early game.</td>
-              </tr>
-              <tr style={{ borderBottom: "1px solid #e5e7eb" }}>
-                <td style={{ padding: "0.75rem", fontWeight: "bold" }}>obj_conversion</td>
-                <td style={{ padding: "0.75rem", color: "#4b5563" }}>Whether the team secured a Drag or Herald shortly after the gank phase.</td>
-              </tr>
-              <tr style={{ borderBottom: "1px solid #e5e7eb" }}>
-                <td style={{ padding: "0.75rem", fontWeight: "bold" }}>lii_diff</td>
-                <td style={{ padding: "0.75rem", color: "#4b5563" }}>Lane Impact Index Difference: Measures the relative performance gap between bot and top lanes properly weighted.</td>
-              </tr>
-              <tr>
-                <td style={{ padding: "0.75rem", fontWeight: "bold" }}>xp_diff, gold_diff</td>
-                <td style={{ padding: "0.75rem", color: "#4b5563" }}>Experience and Gold differences at 10 and 15 minutes.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <ul style={{ lineHeight: "1.75", color: "#4b5563", marginLeft: "1.5rem" }}>
+          <li><strong>result</strong>: Final match outcome (1 = Win, 0 = Loss).</li>
+          <li><strong>gank_focus</strong>: Whether the team focused Bot or Top lane during the early game trade.</li>
+          <li><strong>obj_conversion</strong>: Whether a successful gank led to a neutral or tower objective.</li>
+          <li><strong>lii_diff</strong>: Difference in Lane Impact Index (LII) between bot and top laners.</li>
+          <li><strong>gold_diff10, xp_diff10</strong>: Gold and XP differences at 10 minutes.</li>
+        </ul>
       </section>
 
       <section>

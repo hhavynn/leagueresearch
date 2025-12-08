@@ -47,12 +47,12 @@ export default function EDA() {
       <section style={{ marginBottom: "3rem" }}>
         <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Data Cleaning</h3>
         <div style={{ backgroundColor: "#f9fafb", padding: "1.5rem", borderRadius: "8px", marginBottom: "1.5rem", lineHeight: "1.7" }}>
-          <p style={{ marginBottom: "1rem" }}>We performed the following cleaning steps on the Oracle's Elixir dataset:</p>
+          <p style={{ marginBottom: "1rem" }}>We performed the following cleaning steps on the Oracle's Elixir dataset to isolate valid trade scenarios:</p>
           <ul style={{ marginLeft: "1.5rem", marginTop: "0.5rem" }}>
-            <li>Standardized position names (e.g., converted 'top', 'TOP' to 'TOP', 'bot', 'adc' to 'ADC').</li>
-            <li>Filtered dataset to relevant rows (player-level vs team-level) depending on analysis needs.</li>
-            <li>Handled missing values for objective columns (dragons, heralds) by aggregating max values from team-level rows.</li>
-            <li>Engineered the `gank_focus` feature by analyzing jungle proximity kills/assists and identifying symmetric cross-map trade games.</li>
+            <li><strong>Filtering for Trades:</strong> We kept only games with symmetric cross-map trades (one jungler ganking bot vs. the other ganking top) to ensure a fair "Bot vs Top" comparison.</li>
+            <li><strong>Data Source Alignment:</strong> Objectives like dragons and heralds are recorded on team-level rows. We propagated these values to our analysis rows to ensure the "source of truth" was correct for every gank event.</li>
+            <li><strong>Standardization:</strong> Position names were normalized (e.g., 'bot' → 'ADC', 'supp' → 'SUP') to consistently identify lanes.</li>
+            <li><strong>Feature Engineering:</strong> We calculated `lii_diff` (Lane Impact Index difference) and defined `obj_conversion` as securing any major objective within the post-gank window.</li>
           </ul>
         </div>
         <div style={{ overflowX: "auto", border: "1px solid #e5e7eb", borderRadius: "8px" }}>
