@@ -12,7 +12,7 @@ export default function Modeling() {
 
     if (!modelResults) return <div>Loading model results...</div>;
 
-    const { baseline, final, fairness } = modelResults;
+    const { baseline, final, fairness, feature_importance } = modelResults;
 
     return (
         <div>
@@ -57,7 +57,7 @@ export default function Modeling() {
 
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
                     <MetricCard title="Baseline Accuracy" value={(baseline.accuracy * 100).toFixed(1) + "%"} color="#607d8b" />
-                    <MetricCard title="Baseline ROC-AUC" value={baseline.roc_auc.toFixed(3)} color="#607d8b" />
+                    <MetricCard title="Baseline ROC-AUC" value={baseline.auc ? baseline.auc.toFixed(3) : "N/A"} color="#607d8b" />
                 </div>
             </section>
 
@@ -72,6 +72,7 @@ export default function Modeling() {
                     <p style={{ marginTop: "1rem" }}><strong>New Features Added:</strong></p>
                     <ul style={{ marginLeft: "1.5rem", marginTop: "0.5rem" }}>
                         <li><strong>lii_diff (Quantitative):</strong> Standardized. Measures lane impact/dominance. A higher LII diff implies our bot/top laners are outperforming their opponents early.</li>
+                        <li><strong>dragons, heralds (Quantitative):</strong> Counts of early objectives secured.</li>
                         <li><strong>gold_diff10, xp_diff10 (Quantitative):</strong> Standardized. Early economic leads are strong predictors of snowballing to a win.</li>
                     </ul>
                     <p style={{ marginTop: "1rem" }}>
@@ -82,7 +83,7 @@ export default function Modeling() {
 
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "1.5rem" }}>
                     <MetricCard title="Final Accuracy" value={(final.accuracy * 100).toFixed(1) + "%"} color="#4CAF50" />
-                    <MetricCard title="Final ROC-AUC" value={final.roc_auc.toFixed(3)} color="#4CAF50" />
+                    <MetricCard title="Final ROC-AUC" value={final.auc ? final.auc.toFixed(3) : "N/A"} color="#4CAF50" />
                 </div>
 
                 {/* Feature Importance Table */}
@@ -91,7 +92,7 @@ export default function Modeling() {
                     <div style={{ backgroundColor: "#fff", borderRadius: "8px", border: "1px solid #e5e7eb", overflow: "hidden" }}>
                         <table style={{ width: "100%", borderCollapse: "collapse" }}>
                             <tbody>
-                                {Object.entries(final.feature_importance)
+                                {feature_importance && Object.entries(feature_importance)
                                     .sort(([, a], [, b]) => b - a)
                                     .map(([name, imp], i) => (
                                         <tr key={name} style={{ borderBottom: "1px solid #e5e7eb" }}>
@@ -124,9 +125,9 @@ export default function Modeling() {
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "1.5rem" }}>
-                    <MetricCard title="Bot Focus Accuracy" value={(fairness.group_1_acc * 100).toFixed(1) + "%"} color="#2196F3" />
-                    <MetricCard title="Top Focus Accuracy" value={(fairness.group_2_acc * 100).toFixed(1) + "%"} color="#FF9800" />
-                    <MetricCard title="P-Value" value={fairness.p_value.toFixed(4)} color={fairness.p_value < 0.05 ? "#F44336" : "#4CAF50"} />
+                    <MetricCard title="Bot Focus Accuracy" value={fairness.bot_accuracy ? (fairness.bot_accuracy * 100).toFixed(1) + "%" : "N/A"} color="#2196F3" />
+                    <MetricCard title="Top Focus Accuracy" value={fairness.top_accuracy ? (fairness.top_accuracy * 100).toFixed(1) + "%" : "N/A"} color="#FF9800" />
+                    <MetricCard title="P-Value" value={fairness.p_value ? fairness.p_value.toFixed(4) : "N/A"} color={fairness.p_value < 0.05 ? "#F44336" : "#4CAF50"} />
                 </div>
 
                 <div style={{ padding: "1rem", backgroundColor: "#e8f5e9", borderRadius: "8px", border: "1px solid #4CAF50" }}>
