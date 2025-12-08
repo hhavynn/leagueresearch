@@ -43,6 +43,9 @@ export default function Introduction() {
           We analyzed <strong>888 cross-map trade games</strong> (1,776 team-game observations) from Oracle's Elixir's
           professional League of Legends dataset. The dataset was filtered to professional matches containing exactly one symmetric cross-map trade event.
         </p>
+        <p style={{ fontSize: "0.875rem", color: "#6b7280", marginTop: "1rem", fontStyle: "italic" }}>
+          Data Source: Oracle's Elixir (2025 LFL2 Split, Patch 15.x). accessed via oracleselixir.com.
+        </p>
       </section>
 
       <section style={{ marginBottom: "2rem" }}>

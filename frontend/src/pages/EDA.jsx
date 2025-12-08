@@ -76,54 +76,6 @@ export default function EDA() {
             </tbody>
           </table>
         </div>
-      </section>
-
-      {/* Step 2: Univariate Analysis */}
-      <section style={{ marginBottom: "3rem" }}>
-        <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Univariate Analysis</h3>
-        <p style={{ marginBottom: "1rem", color: "#4b5563" }}>
-          Distribution of the Lane Impact Index Difference (Bot - Top). Most games cluster near zero, indicating generally balanced lane states,
-          but outliers exist where one lane dominated significantly.
-        </p>
-        {plots["plot_univariate.json"] && (
-          <div style={{ backgroundColor: "#fff", borderRadius: "8px", padding: "1rem" }}>
-            <Plot data={plots["plot_univariate.json"].data} layout={{ ...plots["plot_univariate.json"].layout, autosize: true }} useResizeHandler={true} style={{ width: "100%" }} />
-          </div>
-        )}
-      </section>
-
-      {/* Step 2: Bivariate Analysis */}
-      <section style={{ marginBottom: "3rem" }}>
-        <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Bivariate Analysis</h3>
-
-        <div style={{ marginBottom: "2rem" }}>
-          <h4 style={{ marginBottom: "0.5rem" }}>Objective Conversion by Gank Focus</h4>
-          {plots["plot_obj_conversion.json"] && (
-            <div style={{ backgroundColor: "#fff", borderRadius: "8px", padding: "1rem" }}>
-              <Plot data={plots["plot_obj_conversion.json"].data} layout={{ ...plots["plot_obj_conversion.json"].layout, autosize: true }} useResizeHandler={true} style={{ width: "100%" }} />
-            </div>
-          )}
-          <p style={{ marginTop: "0.5rem", fontSize: "0.9rem", color: "#6b7280" }}>
-            This bar chart shows the average objective conversion rate for Bot vs Top focused ganks, grouped by whether the team won or lost.
-          </p>
-        </div>
-
-        <div>
-          <h4 style={{ marginBottom: "0.5rem" }}>Win Probability vs Lane Impact Index</h4>
-          {plots["plot_lii_scatter.json"] && (
-            <div style={{ backgroundColor: "#fff", borderRadius: "8px", padding: "1rem" }}>
-              <Plot data={plots["plot_lii_scatter.json"].data} layout={{ ...plots["plot_lii_scatter.json"].layout, autosize: true }} useResizeHandler={true} style={{ width: "100%" }} />
-            </div>
-          )}
-          <p style={{ marginTop: "0.5rem", fontSize: "0.9rem", color: "#6b7280" }}>
-            Shows the relationship between lane advantage (LII Difference) and win probability (binned).
-          </p>
-        </div>
-      </section>
-
-      {/* Step 2: Interesting Aggregates */}
-      <section style={{ marginBottom: "3rem" }}>
-        <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Interesting Aggregates</h3>
         <p style={{ marginBottom: "1rem", color: "#4b5563" }}>
           Pivot Table: Win Rate grouped by Side (Blue/Red) and Gank Focus.
         </p>

@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import Plotly from "react-plotly.js";
+
+// Handle Vite/Rollup default export interop
+const Plot = Plotly.default || Plotly;
 
 export default function Modeling() {
     const [modelResults, setModelResults] = useState(null);
@@ -14,12 +18,12 @@ export default function Modeling() {
 
     const { baseline, final, fairness, feature_importance } = modelResults;
 
+    const Divider = () => <div style={{ height: "1px", backgroundColor: "#e5e7eb", margin: "3rem 0" }} />;
+
     return (
         <div>
-            {/* Note: We use distinct headers for rubric compliance */}
-
             {/* Step 5: Framing */}
-            <section style={{ marginBottom: "4rem" }}>
+            <section>
                 <h2 style={{ marginBottom: "1.5rem", fontSize: "2rem" }}>Framing a Prediction Problem</h2>
                 <div style={{ padding: "1.5rem", backgroundColor: "#f9fafb", borderRadius: "8px", lineHeight: "1.7" }}>
                     <p style={{ marginBottom: "1rem" }}>
@@ -39,8 +43,10 @@ export default function Modeling() {
                 </div>
             </section>
 
+            <Divider />
+
             {/* Step 6: Baseline Model */}
-            <section style={{ marginBottom: "4rem" }}>
+            <section>
                 <h2 style={{ marginBottom: "1.5rem", fontSize: "2rem" }}>Baseline Model</h2>
                 <div style={{ marginBottom: "1.5rem", lineHeight: "1.7" }}>
                     <p>
@@ -61,8 +67,10 @@ export default function Modeling() {
                 </div>
             </section>
 
+            <Divider />
+
             {/* Step 7: Final Model */}
-            <section style={{ marginBottom: "4rem" }}>
+            <section>
                 <h2 style={{ marginBottom: "1.5rem", fontSize: "2rem" }}>Final Model</h2>
                 <div style={{ marginBottom: "1.5rem", lineHeight: "1.7" }}>
                     <p>
@@ -106,8 +114,10 @@ export default function Modeling() {
                 </div>
             </section>
 
+            <Divider />
+
             {/* Step 8: Fairness Analysis */}
-            <section style={{ marginBottom: "4rem" }}>
+            <section>
                 <h2 style={{ marginBottom: "1.5rem", fontSize: "2rem" }}>Fairness Analysis</h2>
                 <div style={{ padding: "1.5rem", backgroundColor: "#f9fafb", borderRadius: "8px", lineHeight: "1.7", marginBottom: "1.5rem" }}>
                     <p style={{ marginBottom: "1rem" }}>
@@ -128,6 +138,27 @@ export default function Modeling() {
                     <MetricCard title="Bot Focus Accuracy" value={fairness.bot_accuracy ? (fairness.bot_accuracy * 100).toFixed(1) + "%" : "N/A"} color="#2196F3" />
                     <MetricCard title="Top Focus Accuracy" value={fairness.top_accuracy ? (fairness.top_accuracy * 100).toFixed(1) + "%" : "N/A"} color="#FF9800" />
                     <MetricCard title="P-Value" value={fairness.p_value ? fairness.p_value.toFixed(4) : "N/A"} color={fairness.p_value < 0.05 ? "#F44336" : "#4CAF50"} />
+                </div>
+
+                {/* Fairness Visualization */}
+                <div style={{ backgroundColor: "#fff", borderRadius: "8px", padding: "1rem", marginBottom: "1rem" }}>
+                    <h4 style={{ marginBottom: "0.5rem", color: "#667eea" }}>Accuracy by Gank Focus Group</h4>
+                    <Plot
+                        data={[{
+                            x: ['Bot Focus', 'Top Focus'],
+                            y: [fairness.bot_accuracy, fairness.top_accuracy],
+                            type: 'bar',
+                            marker: { color: ['#2196F3', '#FF9800'] }
+                        }]}
+                        layout={{
+                            title: 'Model Accuracy by Group',
+                            yaxis: { title: 'Accuracy', range: [0, 1] },
+                            autosize: true,
+                            margin: { l: 40, r: 20, t: 40, b: 30 }
+                        }}
+                        useResizeHandler={true}
+                        style={{ width: "100%", height: "300px" }}
+                    />
                 </div>
 
                 <div style={{ padding: "1rem", backgroundColor: "#e8f5e9", borderRadius: "8px", border: "1px solid #4CAF50" }}>

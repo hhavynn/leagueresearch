@@ -19,6 +19,18 @@ function App() {
     >
       {/* Site Header */}
       <header style={{ marginBottom: "2rem", textAlign: "center" }}>
+        <img
+          src={import.meta.env.BASE_URL + "assets/banner.png"}
+          alt="League Research Banner"
+          style={{
+            width: "100%",
+            height: "200px",
+            objectFit: "cover",
+            borderRadius: "12px",
+            marginBottom: "2rem",
+            boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
+          }}
+        />
         <h1 style={{
           fontSize: "3rem",
           fontWeight: "bold",
@@ -30,10 +42,10 @@ function App() {
           Bot or Top?
         </h1>
         <h2 style={{ fontSize: "1.5rem", color: "#6b7280", fontWeight: "normal" }}>
-          Quantifying the Value of Jungle Gank Priority
+          Finding the True Value of Jungle Path Priority in Professional League of Legends
         </h2>
         <p style={{ color: "#9ca3af", marginTop: "0.5rem" }}>
-          DSC 80 Final Project – Analyzing cross-map trade value in professional League of Legends
+          Using data science to answer one of League’s oldest strategic debates.
         </p>
       </header>
 
