@@ -1,0 +1,22 @@
+[
+  {
+    "side": "Blue",
+    "gank_focus": "bot",
+    "result": 0.541095890410959
+  },
+  {
+    "side": "Blue",
+    "gank_focus": "top",
+    "result": 0.5133333333333333
+  },
+  {
+    "side": "Red",
+    "gank_focus": "bot",
+    "result": 0.4866666666666667
+  },
+  {
+    "side": "Red",
+    "gank_focus": "top",
+    "result": 0.4589041095890411
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "baseline": {
+    "model_name": "Baseline (Logistic Regression)",
+    "auc": 0.565528366204042,
+    "accuracy": 0.5945945945945946
+  },
+  "final": {
+    "model_name": "Final (Random Forest)",
+    "auc": 0.8662243324405487,
+    "accuracy": 0.7815315315315315
+  },
+  "feature_importance": {
+    "dragons": 0.4756428468177995,
+    "heralds": 0.17453104703711522,
+    "obj_conversion": 0.09838841665185365,
+    "lii_top": 0.05812108387856347,
+    "top_xpdiff10": 0.054976772461696084,
+    "lii_bot": 0.051755122544680766,
+    "bot_xpdiff10": 0.046166229119532325,
+    "lii_diff": 0.03699637655471664,
+    "gank_focus_encoded": 0.0034221049340423374
+  },
+  "fairness": {
+    "bot_accuracy": 0.7733333333333333,
+    "top_accuracy": 0.7899543378995434,
+    "accuracy_difference": -0.016621004566210074,
+    "p_value": 0.696,
+    "is_fair": true
+  }
+}

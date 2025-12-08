@@ -1,0 +1,14 @@
+{
+  "missing_col": "ban1",
+  "test1": {
+    "dependent_col": "gamelength",
+    "p_value": 0.0,
+    "interpretation": "Dependent (MAR)"
+  },
+  "test2": {
+    "dependent_col": "side",
+    "p_value": 0.017,
+    "interpretation": "Dependent (MAR)"
+  },
+  "missing_count": 318
+}
