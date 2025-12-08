@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://<your-username>.github.io/lol-role-impact/",
+  "homepage": "https://hhavynn.github.io/leagueresearch/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
