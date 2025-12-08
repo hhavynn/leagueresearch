@@ -10,14 +10,14 @@ export default function HypothesisTesting() {
 
     useEffect(() => {
         // Load test results
-        fetch("/data/hypothesis_tests.json")
+        fetch(import.meta.env.BASE_URL + "data/hypothesis_tests.json")
             .then(res => res.json())
             .then(data => setTestResults(data))
             .catch(err => console.error("Error loading test results:", err));
 
         // Load plots
         ["test1_objectives.json", "test2_winrate.json"].forEach(filename => {
-            fetch(`/data/${filename}`)
+            fetch(import.meta.env.BASE_URL + `data/${filename}`)
                 .then(res => res.json())
                 .then(data => setPlots(prev => ({ ...prev, [filename]: data })))
                 .catch(err => console.error(`Error loading ${filename}:`, err));

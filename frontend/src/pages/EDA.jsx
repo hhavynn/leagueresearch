@@ -12,25 +12,25 @@ export default function EDA() {
 
   useEffect(() => {
     // Load summary stats
-    fetch("/data/summary_stats.json")
+    fetch(import.meta.env.BASE_URL + "data/summary_stats.json")
       .then(res => res.json())
       .then(data => setStats(data))
       .catch(err => console.error("Error loading stats:", err));
 
     // Load extra data
-    fetch("/data/head_data.json")
+    fetch(import.meta.env.BASE_URL + "data/head_data.json")
       .then(res => res.json())
       .then(data => setHeadData(data))
       .catch(err => console.error("Error loading head data:", err));
 
-    fetch("/data/pivot_table.json")
+    fetch(import.meta.env.BASE_URL + "data/pivot_table.json")
       .then(res => res.json())
       .then(data => setPivotData(data))
       .catch(err => console.error("Error loading pivot data:", err));
 
     // Load plots
     ["plot_obj_conversion.json", "plot_winrate.json", "plot_lii_scatter.json", "plot_univariate.json"].forEach(filename => {
-      fetch(`/data/${filename}`)
+      fetch(import.meta.env.BASE_URL + `data/${filename}`)
         .then(res => res.json())
         .then(data => setPlots(prev => ({ ...prev, [filename]: data })))
         .catch(err => console.error(`Error loading ${filename}:`, err));

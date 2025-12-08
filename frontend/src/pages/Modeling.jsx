@@ -4,7 +4,7 @@ export default function Modeling() {
     const [modelResults, setModelResults] = useState(null);
 
     useEffect(() => {
-        fetch("/data/model_results.json")
+        fetch(import.meta.env.BASE_URL + "data/model_results.json")
             .then(res => res.json())
             .then(data => setModelResults(data))
             .catch(err => console.error("Error loading model results:", err));

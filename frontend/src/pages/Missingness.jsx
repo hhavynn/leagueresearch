@@ -11,19 +11,19 @@ export default function Missingness() {
 
   useEffect(() => {
     // Load results
-    fetch("/data/missingness_results.json")
+    fetch(import.meta.env.BASE_URL + "data/missingness_results.json")
       .then(res => res.json())
       .then(data => setResults(data))
       .catch(err => console.error("Error loading missingness results:", err));
 
     // Load plot 1
-    fetch("/data/missingness_test_1.json")
+    fetch(import.meta.env.BASE_URL + "data/missingness_test_1.json")
       .then(res => res.json())
       .then(data => setPlot1(data))
       .catch(err => console.error("Error loading missingness plot 1:", err));
 
     // Load plot 2
-    fetch("/data/missingness_test_2.json")
+    fetch(import.meta.env.BASE_URL + "data/missingness_test_2.json")
       .then(res => res.json())
       .then(data => setPlot2(data))
       .catch(err => console.error("Error loading missingness plot 2:", err));
