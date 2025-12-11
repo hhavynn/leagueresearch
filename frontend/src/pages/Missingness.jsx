@@ -61,6 +61,13 @@ export default function Missingness() {
         <p style={{ marginBottom: "1rem" }}>
           We performed a permutation test to see if missingness depends on <strong>{results.test1.dependent_col}</strong>.
         </p>
+        <div style={{ marginBottom: "1rem", padding: "1rem", backgroundColor: "#fff", borderLeft: "4px solid #2196F3" }}>
+          <p><strong>Null Hypothesis (H₀):</strong> The missingness in <code>ban1</code> is independent of <code>gamelength</code>.</p>
+          <p><strong>Alternative Hypothesis (H₁):</strong> The missingness in <code>ban1</code> depends on <code>gamelength</code>.</p>
+        </div>
+        <p style={{ marginBottom: "1.5rem", fontStyle: "italic", color: "#6b7280" }}>
+          Note: A low p-value (p &lt; 0.05) suggests the missingness <strong>depends</strong> on gamelength, meaning it is <strong>not MCAR</strong> and potentially MAR.
+        </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "1.5rem" }}>
           <Card title="P-Value" value={results.test1.p_value.toFixed(4)} color={results.test1.p_value < 0.05 ? "#F44336" : "#4CAF50"} />
@@ -84,8 +91,11 @@ export default function Missingness() {
         <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Test 2: Check for Independence (MCAR)</h3>
         <p style={{ marginBottom: "1rem" }}>
           We also checked if missingness depends on <strong>{results.test2.dependent_col}</strong> (Total Monster Kills).
-          We expect this to be independent, as purely in-game PvE stats should not affect pre-game ban behavior.
         </p>
+        <div style={{ marginBottom: "1rem", padding: "1rem", backgroundColor: "#fff", borderLeft: "4px solid #FF9800" }}>
+          <p><strong>Null Hypothesis (H₀):</strong> The missingness in <code>ban1</code> is independent of <code>monsterkills</code>.</p>
+          <p><strong>Alternative Hypothesis (H₁):</strong> The missingness in <code>ban1</code> depends on <code>monsterkills</code>.</p>
+        </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "1.5rem" }}>
           <Card title="P-Value" value={results.test2.p_value.toFixed(4)} color={results.test2.p_value < 0.05 ? "#F44336" : "#4CAF50"} />
@@ -106,6 +116,15 @@ export default function Missingness() {
           <strong>Conclusion:</strong> {results.test2.p_value > 0.05
             ? "Since the p-value is large (> 0.05), we fail to reject the null hypothesis. The missingness of bans does NOT appear to depend on monster kills, supporting the idea that it is not universally dependent on all gaming metrics."
             : "The p-value is small (< 0.05), suggesting a potential dependency even on this variable."}
+        </div>
+      </section>
+
+      <section style={{ marginBottom: "3rem" }}>
+        <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Interpretation & Conclusion</h3>
+        <div style={{ padding: "1.5rem", backgroundColor: "#f3f4f6", borderRadius: "8px", border: "1px solid #d1d5db" }}>
+          <p>
+            In summary, while missingness in <code>ban1</code> could be <strong>NMAR</strong> due to strategic team choices (skipping bans), our statistical testing also supports a <strong>MAR</strong> interpretation—since it is dependent on <code>gamelength</code> but not on <code>monsterkills</code>. This suggests a mixed mechanism, but we can confidently reject MCAR.
+          </p>
         </div>
       </section>
     </div>

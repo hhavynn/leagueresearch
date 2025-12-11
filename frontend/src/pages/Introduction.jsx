@@ -7,6 +7,9 @@ export default function Introduction() {
 
       <section style={{ marginBottom: "2rem" }}>
         <h3 style={{ color: "#667eea", marginBottom: "0.75rem" }}>Research Question</h3>
+        <p style={{ lineHeight: "1.75", color: "#4b5563", marginBottom: "1rem" }}>
+          This project applies core data science techniques—such as permutation testing, modeling, and fairness analysis—to evaluate whether early game gank strategy influences match outcomes.
+        </p>
         <blockquote style={{
           borderLeft: "4px solid #667eea",
           paddingLeft: "1rem",
@@ -41,10 +44,10 @@ export default function Introduction() {
         <h3 style={{ color: "#667eea", marginBottom: "0.75rem" }}>Dataset</h3>
         <p style={{ lineHeight: "1.75", color: "#4b5563" }}>
           We analyzed <strong>888 cross-map trade games</strong> (1,776 team-game observations) from Oracle's Elixir's
-          professional League of Legends dataset. The dataset was filtered to professional matches containing exactly one symmetric cross-map trade event.
+          professional League of Legends dataset. Each row in our dataset represents a single team's perspective during a match, enabling comparison between bot- and top-focused strategies across symmetric trade games. The dataset was filtered to professional matches containing exactly one symmetric cross-map trade event.
         </p>
         <p style={{ fontSize: "0.875rem", color: "#6b7280", marginTop: "1rem", fontStyle: "italic" }}>
-          Data Source: Oracle's Elixir (2025 LFL2 Split, Patch 15.x). accessed via oracleselixir.com.
+          Data Source: Oracle's Elixir (<a href="https://oracleselixir.com" target="_blank" rel="noopener noreferrer" style={{ color: "#667eea", textDecoration: "underline" }}>https://oracleselixir.com</a>), a widely-used platform for professional League of Legends data.
         </p>
       </section>
 

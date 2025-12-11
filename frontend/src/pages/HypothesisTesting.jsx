@@ -36,7 +36,7 @@ export default function HypothesisTesting() {
 
             <section style={{ marginBottom: "2rem" }}>
                 <p style={{ lineHeight: "1.75", color: "#4b5563" }}>
-                    We conducted two permutation tests to determine if there's a statistically significant difference
+                    We conducted two <strong>permutation tests with 1,000 simulations</strong> to determine if there's a statistically significant difference
                     between bot-focused and top-focused gank strategies.
                 </p>
             </section>
@@ -49,8 +49,11 @@ export default function HypothesisTesting() {
                     <div style={{ marginBottom: "1rem" }}>
                         <strong>Null Hypothesis (H₀):</strong> The average objective conversion rate is the same for bot-focus and top-focus games.
                     </div>
-                    <div>
+                    <div style={{ marginBottom: "1rem" }}>
                         <strong>Alternative Hypothesis (H₁):</strong> Bot-focus games have a higher objective conversion rate than top-focus games.
+                    </div>
+                    <div>
+                        <strong>Test Statistic:</strong> The difference in mean objective conversion rate between bot- and top-focus groups.
                     </div>
                 </div>
 
@@ -98,8 +101,11 @@ export default function HypothesisTesting() {
                     <div style={{ marginBottom: "1rem" }}>
                         <strong>Null Hypothesis (H₀):</strong> The win rate is the same for bot-focus and top-focus games.
                     </div>
-                    <div>
+                    <div style={{ marginBottom: "1rem" }}>
                         <strong>Alternative Hypothesis (H₁):</strong> The win rates differ between bot-focus and top-focus games.
+                    </div>
+                    <div>
+                        <strong>Test Statistic:</strong> The difference in mean win rate between bot- and top-focus groups.
                     </div>
                 </div>
 
@@ -137,6 +143,16 @@ export default function HypothesisTesting() {
                         />
                     </div>
                 )}
+            </section>
+
+            {/* Framing Wrap-Up */}
+            <section style={{ marginBottom: "3rem" }}>
+                <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Strategic Insight</h3>
+                <div style={{ padding: "1.5rem", backgroundColor: "#e0e7ff", borderRadius: "8px", border: "1px solid #c7d2fe" }}>
+                    <p style={{ color: "#374151" }}>
+                        These results suggest that while bot-focus ganks are more successful in securing objectives (Dragons), they do not significantly increase a team’s win probability in professional games compated to top-focus ganks. This highlights a strategic disconnect between early-game objective impact and final match outcomes.
+                    </p>
+                </div>
             </section>
         </div>
     );

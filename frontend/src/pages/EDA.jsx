@@ -101,6 +101,50 @@ export default function EDA() {
         </div>
       </section>
 
+      {/* Univariate Analysis */}
+      <section style={{ marginBottom: "3rem" }}>
+        <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Univariate Analysis</h3>
+        <div style={{ backgroundColor: "#f9fafb", padding: "1.5rem", borderRadius: "8px", marginBottom: "1.5rem", lineHeight: "1.7" }}>
+          <p style={{ marginBottom: "1rem" }}>
+            The distribution is bell-shaped and centered near zero, but shows that bot lane advantages (<code>lii_diff &gt; 0</code>) tend to have a wider variance than top lane advantages, suggesting bot lane outcomes are more volatile.
+          </p>
+        </div>
+        <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", backgroundColor: "#fff" }}>
+          {plots["plot_univariate.json"] ? (
+            <Plot
+              data={plots["plot_univariate.json"].data}
+              layout={{ ...plots["plot_univariate.json"].layout, width: undefined, height: undefined, autosize: true }}
+              useResizeHandler={true}
+              style={{ width: "100%", height: "400px" }}
+            />
+          ) : (
+            <div>Loading Plot...</div>
+          )}
+        </div>
+      </section>
+
+      {/* Bivariate Analysis */}
+      <section style={{ marginBottom: "3rem" }}>
+        <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Bivariate Analysis</h3>
+        <div style={{ backgroundColor: "#f9fafb", padding: "1.5rem", borderRadius: "8px", marginBottom: "1.5rem", lineHeight: "1.7" }}>
+          <p style={{ marginBottom: "1rem" }}>
+            There is a clear discrepancy in objective control; bot-focused ganks consistently lead to higher conversion rates (Dragons) compared to top-focused ganks (Heralds), directly linking lane priority to map control.
+          </p>
+        </div>
+        <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "1rem", backgroundColor: "#fff" }}>
+          {plots["plot_obj_conversion.json"] ? (
+            <Plot
+              data={plots["plot_obj_conversion.json"].data}
+              layout={{ ...plots["plot_obj_conversion.json"].layout, width: undefined, height: undefined, autosize: true }}
+              useResizeHandler={true}
+              style={{ width: "100%", height: "400px" }}
+            />
+          ) : (
+            <div>Loading Plot...</div>
+          )}
+        </div>
+      </section>
+
       {/* Key Stats Summary */}
       <section style={{ marginBottom: "2rem", padding: "1.5rem", backgroundColor: "#f9fafb", borderRadius: "8px" }}>
         <h3 style={{ color: "#667eea", marginBottom: "1rem" }}>Overall Dataset Stats</h3>

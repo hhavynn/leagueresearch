@@ -40,6 +40,9 @@ export default function Modeling() {
                         Accuracy gives a straightforward success rate, while ROC-AUC is robust to class imbalance (though our trade dataset is fairly balanced).
                         Features are strictly from the early game (pre-15m) to ensure no data leakage from the future outcome.
                     </p>
+                    <p style={{ marginTop: "1rem", fontStyle: "italic", fontSize: "0.875rem", color: "#6b7280" }}>
+                        Note: All features were drawn from early-game metrics available within the first 10 minutes to avoid data leakage from future events.
+                    </p>
                 </div>
             </section>
 
@@ -132,6 +135,12 @@ export default function Modeling() {
                         <strong>Null Hypothesis (H₀):</strong> The accuracy is the same for both groups (any difference is due to chance).<br />
                         <strong>Alternative Hypothesis (H₁):</strong> The accuracy is significantly different between groups.
                     </p>
+                    <p style={{ marginBottom: "1rem" }}>
+                        <strong>Test Statistic:</strong> We used the difference in accuracy between groups as our test statistic.
+                    </p>
+                    <p>
+                        <strong>Method:</strong> We conducted a permutation test by shuffling <code>gank_focus</code> group labels to simulate the null distribution of accuracy differences.
+                    </p>
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "1.5rem" }}>
@@ -166,8 +175,8 @@ export default function Modeling() {
                         ? `With a p-value of ${fairness.p_value.toFixed(3)}, we fail to reject the null hypothesis. The model appears to be fair across both gank strategies.`
                         : `The p-value is ${fairness.p_value.toFixed(3)}, suggesting a significant difference in model performance between groups.`}
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }
 
